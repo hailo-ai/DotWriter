@@ -32,7 +32,11 @@ void RootGraph::Print(std::ostream& out, unsigned tabDepth) {
   std::string linePrefix = std::string(tabDepth*_tabIncrement, _tabCharacter);
 
   if (_label.compare("") != 0) {
-    _attributes.AddCustomAttribute("label", _label);
+    if (_is_html_label) {
+      _attributes.AddHtmlLabel(_label);
+    } else {
+      _attributes.AddCustomAttribute("label", _label);
+    }
   }
 
   if (!_attributes.Empty()) {
