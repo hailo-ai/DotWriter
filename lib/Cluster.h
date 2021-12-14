@@ -16,6 +16,11 @@ public:
     _attributes(ClusterAttributeSet()) {
   }
 
+  Cluster(const std::string& id, IdManager* idManager, bool isDigraph,
+    const HtmlString &label) : Graph(idManager, isDigraph, label, id),
+    _attributes(ClusterAttributeSet()) {
+  }
+
   virtual ~Cluster() {};
 
   /** Getters and setters **/

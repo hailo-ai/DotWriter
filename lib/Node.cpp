@@ -13,7 +13,11 @@ void Node::Print(std::ostream& out) {
 
     //Label
     if (GetLabel() != "") {
-        _attributes.AddCustomAttribute("label", GetLabel());
+      if (_is_html_label) {
+        _attributes.AddHtmlLabel(_label);
+      } else {
+        _attributes.AddCustomAttribute("label", _label);
+      }
     }
 
     if (!_attributes.Empty()) {

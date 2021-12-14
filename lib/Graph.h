@@ -15,6 +15,7 @@
 #include "AttributeSet.h"
 #include "IdManager.h"
 #include "Idable.h"
+#include "Util.h"
 
 namespace DotWriter {
 
@@ -32,6 +33,7 @@ protected:
   IdManager* _idManager;   // Managed by root graph.
   // I use vector since output order matters.
   std::string _label;
+  bool _is_html_label;
   std::vector<Node *> _nodes;
   std::vector<Edge *> _edges;
   std::vector<Subgraph *> _subgraphs;
@@ -50,14 +52,13 @@ public:
    * - label: Text that is printed somewhere adjacent to the graph.
    * - id: Custom id (optional)
    */
-  Graph(IdManager* idManager, bool isDigraph = false, std::string label = "",
-    std::string id = "somegraph") :
-    Idable(idManager->ValidateCustomId(id)),
-    _isDigraph(isDigraph), _idManager(idManager),
-    _label(label),
-    _defaultNodeAttributes(NodeAttributeSet()),
-    _defaultEdgeAttributes(EdgeAttributeSet()) {
-  }
+  Graph(IdManager* idManager, bool isDigraph = false, std::string label = "", std::string id = "somegraph") :
+    Graph(idManager, isDigraph, label, false, id)
+  {}
+
+  Graph(IdManager* idManager, bool isDigraph, const HtmlString &label, std::string id = "somegraph") :
+    Graph(idManager, isDigraph, static_cast<std::string>(label), true, id)
+  {}
 
   virtual ~Graph();
 
@@ -80,6 +81,8 @@ public:
    */
   Subgraph* AddSubgraph(const std::string& label = "");
   Subgraph* AddSubgraph(const std::string& label, const std::string& id);
+  Subgraph* AddSubgraph(const HtmlString& label);
+  Subgraph* AddSubgraph(const HtmlString& label, const std::string& id);
 
   /**
    * Remove the given subgraph from this graph.
@@ -91,6 +94,8 @@ public:
    */
   Cluster* AddCluster(const std::string& label = "");
   Cluster* AddCluster(const std::string& label, const std::string& id);
+  Cluster* AddCluster(const HtmlString& label);
+  Cluster* AddCluster(const HtmlString& label, const std::string& id);
 
   /**
    * Remove the given cluster from this graph.
@@ -108,6 +113,8 @@ public:
    */
   Node* AddNode(const std::string& label);
   Node* AddNode(const std::string& label, const std::string& id);
+  Node* AddNode(const HtmlString& label);
+  Node* AddNode(const HtmlString& label, const std::string& id);
 
   /**
    * Removes the node from the graph.
@@ -125,6 +132,7 @@ public:
    */
   Edge* AddEdge(Node* src, Node* dst);
   Edge* AddEdge(Node* src, Node* dst, const std::string& label);
+  Edge* AddEdge(Node* src, Node* dst, const HtmlString& label);
 
   /**
    * Removes the edge from the graph. Note that this also deletes the GEdge
@@ -145,6 +153,16 @@ public:
   virtual void Print(std::ostream& out, unsigned tabDepth) = 0;
 
 protected:
+  Graph(IdManager* idManager, bool isDigraph, std::string label, bool is_html_label, std::string id) :
+    Idable(idManager->ValidateCustomId(id)),
+    _isDigraph(isDigraph),
+    _idManager(idManager),
+    _label(label),
+    _is_html_label(is_html_label),
+    _defaultNodeAttributes(NodeAttributeSet()),
+    _defaultEdgeAttributes(EdgeAttributeSet())
+  {}
+
   /**
    * Prints nodes, edges, cluster subgraphs, and subgraphs.
    */

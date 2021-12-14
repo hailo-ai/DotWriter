@@ -23,6 +23,12 @@ public:
     _attributes(SubgraphAttributeSet()) {
   }
 
+  Subgraph(const std::string& id, IdManager* idManager, bool isDigraph,
+           const HtmlString &label) :
+    Graph(idManager, isDigraph, label, id),
+    _attributes(SubgraphAttributeSet())
+  {}
+
   virtual ~Subgraph() {};
 
   /** Getters and setters **/

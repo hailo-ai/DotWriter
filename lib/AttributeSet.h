@@ -129,6 +129,11 @@ public:
     AddAttribute(new CustomAttribute(name, val_sanitized));
   }
 
+  void AddHtmlLabel(const std::string& val) {
+    // TODO: Add HtmlSanitizer
+    AddAttribute(new HtmlLabel(val));
+  }
+
   virtual void Print(std::ostream& out, const std::string& prefix = "",
     const std::string& postfix = ", ") {
     {

@@ -46,6 +46,20 @@ Subgraph* Graph::AddSubgraph(const std::string& label, const std::string& id) {
   return sg;
 }
 
+Subgraph* Graph::AddSubgraph(const HtmlString& label) {
+  Subgraph* sg = new Subgraph(_idManager->GetSubgraphId(), _idManager,
+    IsDigraph(), label);
+  _subgraphs.push_back(sg);
+  return sg;
+}
+
+Subgraph* Graph::AddSubgraph(const HtmlString& label, const std::string& id) {
+  std::string sanitizedId = _idManager->ValidateCustomId(id);
+  Subgraph* sg = new Subgraph(sanitizedId, _idManager, IsDigraph(), label);
+  _subgraphs.push_back(sg);
+  return sg;
+}
+
 void Graph::RemoveSubgraph(Subgraph* subgraph) {
   std::vector<Subgraph*>::iterator it = std::find(_subgraphs.begin(),
     _subgraphs.end(), subgraph);
@@ -64,6 +78,20 @@ Cluster* Graph::AddCluster(const std::string& label) {
 }
 
 Cluster* Graph::AddCluster(const std::string& label, const std::string& id) {
+  std::string sanitizedId = _idManager->ValidateCustomClusterId(id);
+  Cluster* cluster = new Cluster(sanitizedId, _idManager, IsDigraph(), label);
+  _clusters.push_back(cluster);
+  return cluster;
+}
+
+Cluster* Graph::AddCluster(const HtmlString& label) {
+  Cluster* cluster = new Cluster(_idManager->GetClusterId(), _idManager,
+    IsDigraph(), label);
+  _clusters.push_back(cluster);
+  return cluster;
+}
+
+Cluster* Graph::AddCluster(const HtmlString& label, const std::string& id) {
   std::string sanitizedId = _idManager->ValidateCustomClusterId(id);
   Cluster* cluster = new Cluster(sanitizedId, _idManager, IsDigraph(), label);
   _clusters.push_back(cluster);
@@ -98,6 +126,18 @@ Node* Graph::AddNode(const std::string& label, const std::string& id) {
   return node;
 }
 
+Node* Graph::AddNode(const HtmlString& label) {
+  Node* node = new Node(_idManager->GetNodeId(), label);
+  _nodes.push_back(node);
+  return node;
+}
+
+Node* Graph::AddNode(const HtmlString& label, const std::string& id) {
+  Node* node = new Node(_idManager->ValidateCustomId(id), label);
+  _nodes.push_back(node);
+  return node;
+}
+
 void Graph::RemoveNode(Node* node) {
   std::vector<Node*>::iterator it = std::find(_nodes.begin(), _nodes.end(),
     node);
@@ -116,6 +156,12 @@ Edge* Graph::AddEdge(Node* src, Node* dst) {
 }
 
 Edge* Graph::AddEdge(Node* src, Node* dst, const std::string& label) {
+  Edge* edge = new Edge(src, dst, label);
+  _edges.push_back(edge);
+  return edge;
+}
+
+Edge* Graph::AddEdge(Node* src, Node* dst, const HtmlString& label) {
   Edge* edge = new Edge(src, dst, label);
   _edges.push_back(edge);
   return edge;
