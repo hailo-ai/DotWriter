@@ -22,14 +22,14 @@ public:
   RootGraph(bool isDigraph, const std::string& label) :
     Graph(new IdManager(), isDigraph, label), _attributes(GraphAttributeSet())
   {};
-  RootGraph(bool isDigraph, const std::string& label, std::string id) :
+  RootGraph(bool isDigraph, const std::string& label, const std::string &id) :
     Graph(new IdManager(), isDigraph, label, id), _attributes(GraphAttributeSet())
   {};
 
   RootGraph(bool isDigraph, const HtmlString& label) :
     Graph(new IdManager(), isDigraph, label), _attributes(GraphAttributeSet())
   {};
-  RootGraph(bool isDigraph, const HtmlString& label, std::string id) :
+  RootGraph(bool isDigraph, const HtmlString& label, const std::string &id) :
     Graph(new IdManager(), isDigraph, label, id), _attributes(GraphAttributeSet())
   {};
 

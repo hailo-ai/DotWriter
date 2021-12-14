@@ -6,11 +6,11 @@
 
 namespace DotWriter {
 
-Edge::Edge(Node * src, Node * dst, std::string label, bool is_html_label) :
+Edge::Edge(Node * src, Node * dst, const std::string &label, bool is_html_label) :
   _src(src), _dst(dst), _label(label), _is_html_label(is_html_label)
 {}
 
-Edge::Edge(Node * src, Node * dst, std::string label) :
+Edge::Edge(Node * src, Node * dst, const std::string &label) :
   Edge(src, dst, label, false)
 {}
 

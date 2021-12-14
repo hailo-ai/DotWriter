@@ -19,10 +19,10 @@ private:
   bool _is_html_label;
   EdgeAttributeSet _attributes;
 
-  Edge(Node * src, Node * dst, std::string label, bool is_html_label);
+  Edge(Node * src, Node * dst, const std::string &label, bool is_html_label);
 
 public:
-  Edge(Node * src, Node * dst, std::string label = "");
+  Edge(Node * src, Node * dst, const std::string &label = "");
   Edge(Node * src, Node * dst, const HtmlString &label);
 
   virtual ~Edge() {};
@@ -39,7 +39,7 @@ public:
     return _label;
   }
 
-  void SetLabel(std::string label) {
+  void SetLabel(const std::string &label) {
     _label = label;
     _is_html_label = false;
   };

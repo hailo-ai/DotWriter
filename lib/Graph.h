@@ -52,11 +52,11 @@ public:
    * - label: Text that is printed somewhere adjacent to the graph.
    * - id: Custom id (optional)
    */
-  Graph(IdManager* idManager, bool isDigraph = false, std::string label = "", std::string id = "somegraph") :
+  Graph(IdManager* idManager, bool isDigraph = false, const std::string &label = "", const std::string &id = "somegraph") :
     Graph(idManager, isDigraph, label, false, id)
   {}
 
-  Graph(IdManager* idManager, bool isDigraph, const HtmlString &label, std::string id = "somegraph") :
+  Graph(IdManager* idManager, bool isDigraph, const HtmlString &label, const std::string &id = "somegraph") :
     Graph(idManager, isDigraph, static_cast<std::string>(label), true, id)
   {}
 
@@ -153,7 +153,7 @@ public:
   virtual void Print(std::ostream& out, unsigned tabDepth) = 0;
 
 protected:
-  Graph(IdManager* idManager, bool isDigraph, std::string label, bool is_html_label, std::string id) :
+  Graph(IdManager* idManager, bool isDigraph, const std::string &label, bool is_html_label, const std::string &id) :
     Idable(idManager->ValidateCustomId(id)),
     _isDigraph(isDigraph),
     _idManager(idManager),

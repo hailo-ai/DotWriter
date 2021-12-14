@@ -18,14 +18,14 @@ private:
   bool _is_html_label;
   NodeAttributeSet _attributes;
 
-  Node(const std::string& id, std::string label, bool is_html_label) :
+  Node(const std::string& id, const std::string &label, bool is_html_label) :
     Idable(id),
     _label(label),
     _is_html_label(is_html_label)
   {}
 
 public:
-  Node(const std::string& id, std::string label = "") :
+  Node(const std::string& id, const std::string &label = "") :
     Node(id, label, false)
   {}
   
@@ -42,7 +42,7 @@ public:
     return _label;
   }
 
-  void SetLabel(std::string label) {
+  void SetLabel(const std::string &label) {
     _label = label;
     _is_html_label = false;
   };

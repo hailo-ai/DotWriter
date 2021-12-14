@@ -19,7 +19,7 @@ private:
 
 public:
   Subgraph(const std::string& id, IdManager* idManager, bool isDigraph = false,
-    std::string label = "") : Graph(idManager, isDigraph, label, id),
+    const std::string &label = "") : Graph(idManager, isDigraph, label, id),
     _attributes(SubgraphAttributeSet()) {
   }
 
