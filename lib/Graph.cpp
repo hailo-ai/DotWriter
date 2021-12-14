@@ -30,6 +30,11 @@ Graph::~Graph() {
   for (sgIt = _subgraphs.begin(); sgIt != _subgraphs.end(); sgIt++) {
     delete *sgIt;
   }
+
+  std::vector<Cluster *>::iterator clusterIt;
+  for (clusterIt = _clusters.begin(); clusterIt != _clusters.end(); clusterIt++) {
+    delete *clusterIt;
+  }
 }
 
 Subgraph* Graph::AddSubgraph(const std::string& label) {
