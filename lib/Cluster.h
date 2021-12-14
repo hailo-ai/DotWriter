@@ -12,7 +12,12 @@ private:
 
 public:
   Cluster(const std::string& id, IdManager* idManager, bool isDigraph = false,
-    std::string label = "") : Graph(idManager, isDigraph, label, id),
+    const std::string &label = "") : Graph(idManager, isDigraph, label, id),
+    _attributes(ClusterAttributeSet()) {
+  }
+
+  Cluster(const std::string& id, IdManager* idManager, bool isDigraph,
+    const HtmlString &label) : Graph(idManager, isDigraph, label, id),
     _attributes(ClusterAttributeSet()) {
   }
 

@@ -104,6 +104,34 @@ public:
   }
 };
 
+class HtmlLabel : public StandardAttribute {
+private:
+  std::string _value;
+
+public:
+  HtmlLabel(const std::string &value) :
+    StandardAttribute(AttributeType::e::LABEL),
+    _value(value)
+  {}
+
+  virtual ~HtmlLabel() = default;
+
+  void SetValue(const std::string &value) {
+    _value = value;
+  }
+
+  virtual void PrintValue(std::ostream& out) override {
+    out << _value;
+  }
+
+  virtual void Print(std::ostream& out) override {
+    PrintName(out);
+    out << "=<";
+    PrintValue(out);
+    out << ">";
+  }
+};
+
 /**
  * Stores an enum attribute for the given enum.
  * T is the enum type, and F is the struct that houses its ToString() method.

@@ -25,6 +25,21 @@ void ReplaceAll(std::string& str, const std::string& from,
  */
 std::string SanitizeString(std::string& label);
 
+class HtmlString final {
+public:
+  HtmlString(const std::string &s) :
+    _s(s)
+  {}
+
+  ~HtmlString() = default;
+
+  // Allow explicit conversion to std::string
+  explicit operator std::string() const { return _s; }
+
+private:
+  const std::string _s;
+};
+
 }  // namespace DotWriter
 
 #endif
