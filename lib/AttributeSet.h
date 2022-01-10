@@ -337,7 +337,7 @@ public:
    * bits within the bitmap's bounding box will be set, overwriting whatever
    * color or graphics where already on the page. If this effect is not desired,
    * and you only want to set bits explicitly assigned in drawing the graph, set
-   * bgcolor="clear".
+   * bgcolor="transparent".
    */
   void SetBGColor(Color::e val) {
     AddEnumAttribute<Color::e, Color>(AttributeType::BGCOLOR, val);
@@ -421,7 +421,7 @@ public:
   }
 
   /**
-   * Only valid when mode="ipsep". If "all", constraints are generated for each
+   * Only valid when mode="ipsep". If true, constraints are generated for each
    * edge in the largest (heuristic) directed acyclic subgraph such that the
    * edge must point downwards. If "hier", generates level constraints similar
    * to those used with mode="hier". The main difference is that, in the latter
@@ -740,10 +740,10 @@ public:
   DOUBLE_ATTRIBUTE(NSLIMIT1, NsLimit1)
 
   /**
-   * If the value of the attribute is "exit", then the outedges of a node, that
+   * If the value of the attribute is "out", then the outedges of a node, that
    * is, edges with the node as its tail node, must appear left-to-right in the
    * same order in which they are defined in the input. If the value of the
-   * attribute is "enter", then the inedges of a node must appear left-to-right in
+   * attribute is "in", then the inedges of a node must appear left-to-right in
    * the same order in which they are defined in the input. If defined as a
    * graph or subgraph attribute, the value is applied to all nodes in the graph
    * or subgraph. Note that the graph attribute takes precedence over the node
@@ -1268,7 +1268,7 @@ public:
    *
    * Usually, the only time it is necessary to specify the truecolor model is if
    * the graph uses more than 256 colors. However, if one uses
-   * bgcolor=clear with a color palette, font antialiasing can show up as
+   * bgcolor=transparent with a color palette, font antialiasing can show up as
    * a fuzzy white area around characters. Using truecolor=true avoids this
    * problem.
    */
@@ -1364,7 +1364,7 @@ public:
    * bits within the bitmap's bounding box will be set, overwriting whatever
    * color or graphics where already on the page. If this effect is not desired,
    * and you only want to set bits explicitly assigned in drawing the graph, set
-   * bgcolor="clear".
+   * bgcolor="transparent".
    */
   void SetBGColor(Color::e val) {
     AddEnumAttribute<Color::e, Color>(AttributeType::BGCOLOR, val);
@@ -1879,10 +1879,10 @@ public:
   BOOL_ATTRIBUTE(NOJUSTIFY, NoJustify)
 
   /**
-   * If the value of the attribute is "exit", then the outedges of a node, that
+   * If the value of the attribute is "out", then the outedges of a node, that
    * is, edges with the node as its tail node, must appear left-to-right in the
    * same order in which they are defined in the input. If the value of the
-   * attribute is "enter", then the inedges of a node must appear left-to-right in
+   * attribute is "in", then the inedges of a node must appear left-to-right in
    * the same order in which they are defined in the input. If defined as a
    * graph or subgraph attribute, the value is applied to all nodes in the graph
    * or subgraph. Note that the graph attribute takes precedence over the node
