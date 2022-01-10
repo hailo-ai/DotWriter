@@ -296,7 +296,7 @@ public:
 struct DirEdgeConstraints {
   enum e {
     DEFAULT,
-    ALL,
+    TRUE,
     HIER,
     COUNT
   };
@@ -349,8 +349,8 @@ public:
 struct Ordering {
   enum e {
     DEFAULT,
-    EXIT,
-    ENTER,
+    OUT,
+    IN,
     COUNT
   };
 
@@ -529,7 +529,6 @@ struct Color {
     CHOCOLATE2,
     CHOCOLATE3,
     CHOCOLATE4,
-    CLEAR,
     CORAL,
     CORAL1,
     CORAL2,
@@ -1105,6 +1104,7 @@ struct Color {
     TOMATO2,
     TOMATO3,
     TOMATO4,
+    TRANSPARENT,
     TURQUOISE,
     TURQUOISE1,
     TURQUOISE2,
